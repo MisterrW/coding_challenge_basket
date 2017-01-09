@@ -1,0 +1,11 @@
+basket - contains objects implementing buyable
+
+buyable - interface specifying attributes needed to be buyable items
+Must implement:
+- price
+- name
+- bogof y/n
+
+BOGOF - must check number is divisible by 2 - otherwise minus 1, divide that by 2
+Must be able to apply bogof deal to item (bool)
+
