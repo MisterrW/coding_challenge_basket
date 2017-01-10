@@ -32,9 +32,8 @@ public class BasketTest {
   public void testTwoBogofItemsSameType(){
     basket.addItem(new Sandwich("Ham", 2.99, true));
     basket.addItem(new Sandwich("Salmon", 3.60, true));
-    basket.getTotal();
+    assertEquals(3.60, basket.applyBogofDiscount(), 0.01);
     assertEquals(2.99, basket.getBogofDiscount(), 0.01);
-    assertEquals(3.60, basket.getTotal(), 0.01);
   }
 
   @Test
@@ -42,8 +41,8 @@ public class BasketTest {
     basket.addItem(new Sandwich("Ham", 2.99, true));
     basket.addItem(new Sandwich("Salmon", 3.60, false));
     basket.getTotal();
+    assertEquals(6.59, basket.applyBogofDiscount(), 0.01);
     assertEquals(0, basket.getBogofDiscount(), 0.01);
-    assertEquals(6.59, basket.getTotal(), 0.01);
   }
 
   @Test
@@ -52,8 +51,8 @@ public class BasketTest {
     basket.addItem(new Sandwich("Ham", 2.99, true));
     basket.addItem(new Sandwich("Salmon", 3.60, true));
     basket.getTotal();
+    assertEquals(6.59, basket.applyBogofDiscount(), 0.01);
     assertEquals(1.20, basket.getBogofDiscount(), 0.01);
-    assertEquals(6.59, basket.getTotal(), 0.01);
   }
 
   @Test
@@ -62,9 +61,8 @@ public class BasketTest {
     basket.addItem(new Sandwich("Ham", 2.99, true));
     basket.addItem(new Sandwich("Salmon", 3.60, true));
     basket.addItem(new Sandwich("Pastrami", 5.00, true));
-    basket.getTotal();
+    assertEquals(8.60, basket.applyBogofDiscount(), 0.01);
     assertEquals(4.19, basket.getBogofDiscount(), 0.01);
-    assertEquals(8.60, basket.getTotal(), 0.01);
   }
 
   @Test
@@ -73,9 +71,18 @@ public class BasketTest {
     basket.addItem(new Drink("Fanta", 0.90, true));
     basket.addItem(new Sandwich("Salmon", 3.60, true));
     basket.addItem(new Sandwich("Pastrami", 5.00, true));
-    basket.getTotal();
+    assertEquals(6.20, basket.applyBogofDiscount(), 0.01);
     assertEquals(4.50, basket.getBogofDiscount(), 0.01);
-    assertEquals(6.20, basket.getTotal(), 0.01);
   }
+
+  @Test
+  public void testTenPercentDiscount(){
+    basket.addItem(new Drink("Prosecco", 15, false));
+    assertEquals(basket.applyTenPercentDiscount(), 15, 0.1);
+    basket.empty();
+    basket.addItem(new Drink("Champagne", 30, false));
+    assertEquals(basket.applyTenPercentDiscount(), 27, 0.1);
+  }
+
 
 }

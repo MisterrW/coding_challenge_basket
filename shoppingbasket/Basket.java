@@ -4,9 +4,13 @@ import java.util.*;
 public class Basket {
   ArrayList<Buyable> items;
   ArrayList<Buyable> bogofItems;
-  Double bogofDiscount;
+  double bogofDiscount;
 
   public Basket(){
+    this.items = new ArrayList<Buyable>();
+  }
+
+  public void empty(){
     this.items = new ArrayList<Buyable>();
   }
 
@@ -28,19 +32,32 @@ public class Basket {
     return currentItems;
   }
 
-  public double getTotal(){
-    double total = 0;
-    for(Buyable item : this.items){
-      total += item.getPrice();
+  public double applyTenPercentDiscount(){
+    double total = applyBogofDiscount();
+    if(total >= 20.0) {
+      total = total * 0.9;
     }
+    return total;
+  }
+
+  public double applyBogofDiscount(){
+    double total = getTotal();
     createBogofArray(this.items);
     calcBogofDiscount(this.bogofItems);
     total -= this.bogofDiscount;
     return total;
   }
 
+  public double getTotal(){
+    double total = 0;
+    for(Buyable item : this.items){
+      total += item.getPrice();
+    }
+    return total;
+  }
+
   public void createBogofArray(ArrayList<Buyable> items){
-    
+
     ArrayList<Buyable>bogofItems = new ArrayList<Buyable>(items);
     
     for (int i=0; i<bogofItems.size(); i++){
