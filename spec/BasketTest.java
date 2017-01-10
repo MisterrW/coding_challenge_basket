@@ -28,5 +28,12 @@ public class BasketTest {
     assertEquals(6.59, basket.getTotal(), 0.01);
   }
 
+  @Test
+  public void testBogofItemsSameType(){
+    basket.addItem(new Sandwich("Ham", 2.99, true));
+    basket.addItem(new Sandwich("Salmon", 3.60, true));
+    assertEquals(3.60, basket.getTotal(), 0.01);
+  }
+
 
 }

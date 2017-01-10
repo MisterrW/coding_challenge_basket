@@ -1,0 +1,20 @@
+bogof
+
+Array of mixed products, different types, different prices, some bogof and some not.
+
+If two items in the array are of the same type and both are marked bogof, need to subtract the price of the lowest priced of those items from the total.
+
+
+
+So,
+
+1. create a copy of the items array and a bogofDiscount double with a value of 0
+2. delete all items with a bogof of false
+3. sort the array by price(descending)
+4. for each item in the copied array:
+    delete the item
+    starting from the end of the remaining array and counting backwards:
+      if another item in the array has the same class (getClass)
+        -add the price of that item to bogofDiscount
+        -delete that item from the array
+
