@@ -4,13 +4,24 @@ import java.util.*;
 public class Checkout {
   ArrayList<Buyable> bogofItems;
   double bogofDiscount;
-  Boolean hasLoyaltyCard;
   Basket basket;
-  Customer customer;
+  Shopper shopper;
 
-  public Checkout(Basket basket, Customer customer){
-    this.customer = customer;
+  public Checkout(Basket basket, Shopper shopper){
+    this.shopper = shopper;
     this.basket = basket;
+  }
+
+  public double getFinalTotal(){
+    return applyLoyaltyCardDiscount();
+  }
+
+  public double applyLoyaltyCardDiscount(){
+    double total = applyTenPercentDiscount();
+    if(this.shopper.hasLoyaltyCard() == true) {
+      total = total * 0.98;
+    }
+    return total;
   }
 
   public double applyTenPercentDiscount(){
@@ -23,15 +34,15 @@ public class Checkout {
 
   public double applyBogofDiscount(){
     double total = getTotal();
-    createBogofArray(this.basket.getItems);
-    calcBogofDiscount(this.basket.bogofItems);
+    createBogofArray(this.basket.getItems());
+    calcBogofDiscount(this.bogofItems);
     total -= this.bogofDiscount;
     return total;
   }
 
   public double getTotal(){
     double total = 0;
-    for(Buyable item : this.basket.getItems){
+    for(Buyable item : this.basket.getItems()){
       total += item.getPrice();
     }
     return total;
