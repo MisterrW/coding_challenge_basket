@@ -3,6 +3,8 @@ import java.util.*;
 
 public class Basket {
   ArrayList<Buyable> items;
+  ArrayList<Buyable> bogofItems;
+  Double bogofDiscount;
 
   public Basket(){
     this.items = new ArrayList<Buyable>();
@@ -31,7 +33,47 @@ public class Basket {
     for(Buyable item : this.items){
       total += item.getPrice();
     }
+    createBogofArray(this.items);
+    calcBogofDiscount(this.bogofItems);
+    total -= this.bogofDiscount;
     return total;
+  }
+
+  public void createBogofArray(ArrayList<Buyable> items){
+    
+    ArrayList<Buyable>bogofItems = new ArrayList<Buyable>(items);
+    
+    for (int i=0; i<bogofItems.size(); i++){
+      if (bogofItems.get(i).checkBogof() == false){
+        bogofItems.remove(i);
+      }
+    }
+
+    bogofItems.sort(Comparator.comparing(Buyable::getPrice));
+    Collections.reverse(bogofItems);
+    this.bogofItems = bogofItems;
+  }
+
+  public void calcBogofDiscount(ArrayList<Buyable> bogofItems){
+    this.bogofDiscount = 0.0;
+    while(bogofItems.size() > 1){
+      Buyable greater = bogofItems.get(0);
+      bogofItems.remove(0);
+      Boolean discountMatchedYet = false;
+      for(int i=bogofItems.size()-1; i>=0; i--){
+        if(discountMatchedYet == false){
+          if(bogofItems.get(i).getClass() == greater.getClass()){
+            this.bogofDiscount += bogofItems.get(i).getPrice();
+            bogofItems.remove(i);
+            discountMatchedYet = true;
+          }
+        }
+      }
+    }
+  }
+
+  public double getBogofDiscount(){
+    return this.bogofDiscount;
   }
 
 }

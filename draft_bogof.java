@@ -1,5 +1,4 @@
 public double createBogofArray(ArrayList<Buyable> items){
-  Double bogofDiscount = 0;
   
   bogofItems = new ArrayList<Buyable>(items);
   
@@ -10,7 +9,6 @@ public double createBogofArray(ArrayList<Buyable> items){
   }
 
   bogofItems.sort(Comparator.comparing(Buyable::getPrice()));
-
 }
 
 public double calcBogofDiscount(ArrayList<Buyable> bogofItems){
@@ -19,10 +17,9 @@ public double calcBogofDiscount(ArrayList<Buyable> bogofItems){
     bogofItems.delete(0);
     for(int i=bogofItems.size()-1; i=0; i--){
       if(bogofItems.get(i).getClass() == greater.getClass()){
-        bogofDiscount += bogofItems.get(i).getPrice();
+        this.bogofDiscount += bogofItems.get(i).getPrice();
         bogofItems.delete(i);
       }
     }
   }
-
 }
