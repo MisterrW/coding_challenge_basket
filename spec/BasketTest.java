@@ -22,6 +22,16 @@ public class BasketTest {
   }
 
   @Test
+  public void testRemoveItem(){
+    basket.addItem(sandwich);
+    basket.addItem(sandwich2);
+    assertEquals(2, basket.getItems().size());
+    Buyable returned = basket.removeItem(sandwich);
+    assertEquals(1, basket.getItems().size());
+    assertEquals("Ham", returned.getName());
+  }
+
+  @Test
   public void testTotalPrice(){
     basket.addItem(sandwich);
     basket.addItem(sandwich2);
