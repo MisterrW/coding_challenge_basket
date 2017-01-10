@@ -67,4 +67,15 @@ public class BasketTest {
     assertEquals(8.60, basket.getTotal(), 0.01);
   }
 
+  @Test
+  public void testMultipleBogofMatchesDifferentItemTypes(){
+    basket.addItem(new Drink("Coke", 1.20, true));
+    basket.addItem(new Drink("Fanta", 0.90, true));
+    basket.addItem(new Sandwich("Salmon", 3.60, true));
+    basket.addItem(new Sandwich("Pastrami", 5.00, true));
+    basket.getTotal();
+    assertEquals(4.50, basket.getBogofDiscount(), 0.01);
+    assertEquals(6.20, basket.getTotal(), 0.01);
+  }
+
 }
