@@ -5,6 +5,7 @@ public class Basket {
   ArrayList<Buyable> items;
   ArrayList<Buyable> bogofItems;
   double bogofDiscount;
+  Boolean hasLoyaltyCard;
 
   public Basket(){
     this.items = new ArrayList<Buyable>();
@@ -66,7 +67,7 @@ public class Basket {
       }
     }
 
-    bogofItems.sort(Comparator.comparing(Buyable::getPrice));
+    bogofItems.sort(Comparator.comparing(Buyable::getPrice);
     Collections.reverse(bogofItems);
     this.bogofItems = bogofItems;
   }
