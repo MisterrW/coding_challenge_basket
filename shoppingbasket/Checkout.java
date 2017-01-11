@@ -12,7 +12,8 @@ public class Checkout {
     this.basket = basket;
   }
 
-  //For ease of testing each discount calls the previous discount's adjusted total sequentially - rather than each being called from a master calcTotal function
+  //For ease of testing each discount calls the previous discount's adjusted total 
+  // sequentially - rather than each being called from a master calcTotal function
 
   public double getFinalTotal(){
     return applyLoyaltyCardDiscount();
@@ -50,7 +51,10 @@ public class Checkout {
     return total;
   }
 
-  // The next two functions evaluate buy one get one free discount as follows: * only goods with a buy one get one free value of true are evaluated * deals only apply for two items of the same type (eg two sandwiches, not a sandwich and a drink) * the cheaper item is always discounted
+  // The next two functions evaluate buy one get one free discount as follows: 
+  // * only goods with a buy one get one free value of true are evaluated 
+  // * deals only apply for two items of the same type (eg two sandwiches, not a sandwich and a drink) 
+  // * the cheaper item is always discounted
 
   public void createBogofArray(ArrayList<Buyable> items){
 
@@ -70,8 +74,7 @@ public class Checkout {
   public void calcBogofDiscount(ArrayList<Buyable> bogofItems){
     this.bogofDiscount = 0.0;
     while(bogofItems.size() > 1){
-      Buyable greater = bogofItems.get(0);
-      bogofItems.remove(0);
+      Buyable greater = bogofItems.remove(0);
       Boolean discountMatchedYet = false;
       for(int i=bogofItems.size()-1; i>=0; i--){
         if(discountMatchedYet == false){
