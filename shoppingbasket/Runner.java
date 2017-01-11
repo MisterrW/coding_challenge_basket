@@ -17,7 +17,7 @@ public class Runner {
     boolean loyalty = getLoyalty();
     pause();
 
-    this.shopper = new Shopper(name, loyalty);
+    this.shopper = new Shopper(name, loyalty, basket);
   }
 
   public boolean getLoyalty(){
@@ -42,7 +42,7 @@ public class Runner {
 
   public void pause(){
     try {
-    Thread.sleep(1000);
+    Thread.sleep(700);
     } 
     catch(InterruptedException e){
     }

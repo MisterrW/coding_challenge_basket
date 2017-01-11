@@ -14,7 +14,7 @@ public class BasketTest {
     sandwich = new Sandwich("Ham", 2.99, false);
     sandwich2 = new Sandwich("Salmon", 3.60, false);
     basket = new Basket();
-    shopper = new Shopper("Will", false);
+    shopper = new Shopper("Will", false, basket);
     checkout = new Checkout(basket, shopper);
   }
 
@@ -108,7 +108,7 @@ public class BasketTest {
 
   @Test
   public void testLoyaltyCardDiscount(){
-    Shopper shopper2 = new Shopper("Will", true);
+    Shopper shopper2 = new Shopper("Will", true, basket);
     basket.addItem(new Sandwich("Rather expensive sandwich", 10, false));
     Checkout checkout2 = new Checkout(basket, shopper2);
     assertEquals(9.8, checkout2.applyLoyaltyCardDiscount(), 0.01);
@@ -116,7 +116,7 @@ public class BasketTest {
 
   @Test
   public void testAllDiscountsTogether(){
-    Shopper shopper2 = new Shopper("Will", true);
+    Shopper shopper2 = new Shopper("Will", true, basket);
     basket.addItem(new Drink("Coke", 1.20, true));
     basket.addItem(new Drink("Fanta", 0.90, true));
     basket.addItem(new Sandwich("Salmon", 3.60, true));
