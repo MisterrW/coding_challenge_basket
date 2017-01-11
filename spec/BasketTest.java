@@ -118,7 +118,4 @@ public class BasketTest {
 
     assertEquals(18.70, checkout2.getFinalTotal(), 0.01);
   }
-
-
-
 }
