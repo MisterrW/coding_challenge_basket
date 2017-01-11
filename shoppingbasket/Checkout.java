@@ -12,7 +12,7 @@ public class Checkout {
     this.basket = basket;
   }
 
-  //For ease of testing each discount calls the previous discount's adjusted total sequentially
+  //For ease of testing each discount calls the previous discount's adjusted total sequentially - rather than each being called from a master calcTotal function
 
   public double getFinalTotal(){
     return applyLoyaltyCardDiscount();

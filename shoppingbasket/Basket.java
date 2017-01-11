@@ -5,7 +5,7 @@ public class Basket {
   ArrayList<Buyable> items;
 
   public Basket(){
-    this.items = new ArrayList<Buyable>();
+    empty();
   }
 
   public void empty(){
@@ -26,8 +26,7 @@ public class Basket {
   }
 
   public ArrayList<Buyable> getItems(){
-    ArrayList<Buyable> currentItems = new ArrayList<Buyable>(this.items);
-    return currentItems;
+    return new ArrayList<Buyable>(this.items);
   }
 
 }

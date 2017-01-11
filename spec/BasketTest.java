@@ -51,6 +51,14 @@ public class BasketTest {
   }
 
   @Test
+  public void testTwoBogofItemsSamePrice(){
+    basket.addItem(new Sandwich("Ham", 2.99, true));
+    basket.addItem(new Sandwich("Ham", 2.99, true));
+    assertEquals(2.99, checkout.applyBogofDiscount(), 0.01);
+    assertEquals(2.99, checkout.getBogofDiscount(), 0.01);
+  }
+
+  @Test
   public void testBogofBooleanWorks(){
     basket.addItem(new Sandwich("Ham", 2.99, true));
     basket.addItem(new Sandwich("Salmon", 3.60, false));
@@ -115,7 +123,6 @@ public class BasketTest {
     basket.addItem(new Sandwich("Pastrami", 5.00, true));
     basket.addItem(new Drink("Prosecco", 15, false));
     Checkout checkout2 = new Checkout(basket, shopper2);
-
     assertEquals(18.70, checkout2.getFinalTotal(), 0.01);
   }
 }
