@@ -1,15 +1,25 @@
 package shoppingbasket;
+import java.util.*;
 
 public class Runner {
   private Shopper shopper;
   private Basket basket;
   private Checkout checkout;
   private Stock stock;
-
+  
   public Runner(){
     this.basket = new Basket();
+    ArrayList<Buyable> stockPrimer = new ArrayList<Buyable>();
+    
+    stockPrimer.add(new Drink("Coke", 1.20, true));
+    stockPrimer.add(new Drink("Fanta", 0.90, true));
+    stockPrimer.add(new Sandwich("Salmon", 3.60, true));
+    stockPrimer.add(new Sandwich("Pastrami", 5.00, true));
+    stockPrimer.add(new Drink("Prosecco", 15, false));
+    
+    this.stock = new Stock(stockPrimer);
   }
-
+  
   public void run(){
     String name = getName();
     pause();
@@ -18,6 +28,8 @@ public class Runner {
     pause();
 
     this.shopper = new Shopper(name, loyalty);
+
+    showStock();
   }
 
   public boolean getLoyalty(){
@@ -45,6 +57,13 @@ public class Runner {
     Thread.sleep(1000);
     } 
     catch(InterruptedException e){
+    }
+  }
+
+  public void showStock(){
+    System.out.println("These items are available:");
+    for (Buyable item : this.stock.getItems()) {
+      System.out.println(String.format(item.getName() + ", £" + item.getPrice()));
     }
   }
 }
