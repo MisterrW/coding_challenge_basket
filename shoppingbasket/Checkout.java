@@ -2,10 +2,10 @@ package shoppingbasket;
 import java.util.*;
 
 public class Checkout {
-  ArrayList<Buyable> bogofItems;
-  double bogofDiscount;
-  Basket basket;
-  Shopper shopper;
+  private ArrayList<Buyable> bogofItems;
+  private double bogofDiscount;
+  private Basket basket;
+  private Shopper shopper;
 
   public Checkout(Basket basket, Shopper shopper){
     this.shopper = shopper;

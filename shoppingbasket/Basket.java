@@ -2,7 +2,7 @@ package shoppingbasket;
 import java.util.*;
 
 public class Basket {
-  ArrayList<Buyable> items;
+  private ArrayList<Buyable> items;
 
   public Basket(){
     empty();

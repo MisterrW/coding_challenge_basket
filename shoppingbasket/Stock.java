@@ -2,7 +2,7 @@ package shoppingbasket;
 import java.util.*;
 
 public class Stock {
-  ArrayList<Buyable> items;
+  private ArrayList<Buyable> items;
 
   public Stock(ArrayList<Buyable> stock){
     this.items = new ArrayList<Buyable>(stock);
